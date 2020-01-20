@@ -634,8 +634,8 @@ ContentObserver：
 
 ##19、广播的分类
 
-- 有序广播：通过Context.sendBroadcast()方法来发送，它是完全异步的。所有的receivers（接收器）的执行顺序不确定，因此所有的receivers（接收器）接收broadcast的顺序不确定。这种方式效率更高，但是BroadcastReceiver无法使用setResult系列、getResult系列及abortbroadcast（中止）系列API。广播不能被终止,数据不能被修改。
-- 无序广播：有序广播，即从优先级别最高的广播接收器开始接收，接收完了如果没有丢弃，就下传给下一个次高优先级别的广播接收器进行处理，依次类推，直到最后。如果多个应用程序设置的优先级别相同，则谁先注册的广播，谁就可以优先接收到广播。通过Context.sendOrderedBroadcast()方法来发送，sendOrderedBroadcast(intent, receiverPermission, resultReceiver, scheduler, initialCode, initialData, initialExtras);，其中的参数resultReceiver，可以自己重写一个类，作为一个最终的receive 最后都能够接收到广播，最终的receiver 不需要再清单文件里面配置，initialData可以作为传输的数据。广播可以被终止，数据传输过程中可以被修改。
+- 无序广播：通过Context.sendBroadcast()方法来发送，它是完全异步的。所有的receivers（接收器）的执行顺序不确定，因此所有的receivers（接收器）接收broadcast的顺序不确定。这种方式效率更高，但是BroadcastReceiver无法使用setResult系列、getResult系列及abortbroadcast（中止）系列API。广播不能被终止,数据不能被修改。
+- 有序广播：即从优先级别最高的广播接收器开始接收，接收完了如果没有丢弃，就下传给下一个次高优先级别的广播接收器进行处理，依次类推，直到最后。如果多个应用程序设置的优先级别相同，则谁先注册的广播，谁就可以优先接收到广播。通过Context.sendOrderedBroadcast()方法来发送，sendOrderedBroadcast(intent, receiverPermission, resultReceiver, scheduler, initialCode, initialData, initialExtras);，其中的参数resultReceiver，可以自己重写一个类，作为一个最终的receive 最后都能够接收到广播，最终的receiver 不需要再清单文件里面配置，initialData可以作为传输的数据。广播可以被终止，数据传输过程中可以被修改。
 
 ##19、注册广播接收者两种方式的区别
 
